@@ -1,0 +1,108 @@
+@model Employee
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form asp-controller="Home" asp-action="UpdtEmployeeData" method="post">
+                <input type="hidden" asp-for="ID" />
+                <input type="hidden" asp-for="EmployeeAddress.EmployeeID" />
+                <input type="hidden" asp-for="EmployeeAddress.ID" />
+                <input type="hidden" asp-for="EmployeeAddressID" />
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Çalışan Bilgileri</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-6">
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <label>İsim</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" asp-for="Name" />
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <label>Cinsiyet</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" asp-for="Gender" />
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <label>Posizyon</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" asp-for="Position" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <label>Soyisim</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" asp-for="LastName" />
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <label>Doğum Tarihi</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" asp-for="BirthDate" />
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-6">
+                                <label>Başlangıç Tarihi</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" asp-for="HireDate" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <h4>Ev Adresi</h4>
+                        <hr style="color: #cecece;">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <label>Şehir</label>
+                                    </div>
+                                    <div class="col-10">
+                                        <select class="form-select" asp-for="EmployeeAddress.StateID"
+                                            aria-label="Default select example">
+                                            @foreach (var state in ViewData["States"] as List<State>)
+                                            {
+                                                <option value="@state.ID">@state.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <label>Adres</label>
+                                    </div>
+                                    <div class="col-10">
+                                        <input type="text" asp-for="EmployeeAddress.Address" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

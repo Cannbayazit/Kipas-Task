@@ -1,0 +1,57 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 h-75 w-100">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Cinsiyet</th>
+                        <th>Ad</th>
+                        <th>Soyad</th>
+                        <th>Doğum Tarihi</th>
+                        <th>Pozisyon</th>
+                        <th>Başlangıç</th>
+                        <th>Şehir</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model)
+                    {
+                        <tr class="table-active">
+                            <td>@employee.Gender</td>
+                            <td>@employee.Name</td>
+                            <td>@employee.LastName</td>
+                            <td>@employee.BirthDate</td>
+                            <td>@employee.Position</td>
+                            <td>@employee.HireDate</td>
+                            <td>@employee.EmployeeAddress.State.Name</td>
+                            <td><button onclick="getModal(@employee.ID)" class="btn btn-warning">Güncelle</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="FinalModal">
+
+</div>
+@section Scripts{
+    <script>
+        function getModal(ID) {
+            fetch(`/Partial/GetEmployeeModal?id=${ID}`).then(response => {
+                return response.text();
+            }).then(data => {
+                console.log(data)
+                document.getElementById('FinalModal').innerHTML = data;
+                new bootstrap.Modal('#exampleModal').show()
+            })
+        }
+    </script>
+}
+
